@@ -1,0 +1,85 @@
+:root {
+    /* Colors */
+    --primary-color: #3498db;       /* Primary color */
+    --secondary-color: #2ecc71;     /* Secondary color */
+    --accent-color: #e74c3c;        /* Accent color */
+    --background-color: #f2f2f2;    /* Background color */
+    --text-color: #333;             /* Main text color */
+    --link-color: #3498db;          /* Link color */
+
+    /* Typography */
+    --font-family: 'Arial', sans-serif;  /* Main font family */
+    --heading-font-weight: bold;         /* Font weight for headings */
+    --body-font-weight: normal;          /* Font weight for normal text */
+    --base-font-size: 1.6rem;            /* Base font size (equivalent to 16px) */
+
+    /* Spacing */
+    --spacing-xs: 0.4rem;   /* Extra small space (equivalent to 4px) */
+    --spacing-sm: 0.8rem;   /* Small space (equivalent to 8px) */
+    --spacing-md: 1.6rem;   /* Medium space (equivalent to 16px) */
+    --spacing-lg: 2.4rem;   /* Large space (equivalent to 24px) */
+    --spacing-xl: 3.2rem;   /* Extra large space (equivalent to 32px) */
+
+    /* Other styles */
+    --border-radius: 0.4rem;   /* Border radius (equivalent to 4px) */
+    --box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);  /* Box shadow (equivalent to 2px 4px rgba(0, 0, 0, 0.1)) */
+    --loader-background: rgba(0, 0, 0, 0.7);
+    --loader-border-light: #f3f3f3;
+    --loader-border-dark: var(--primary-color);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: opacity 3.5s ease-in; 
+    max-width: 90rem;
+    height: 100vh;
+    margin: 0 auto;
+    opacity: 0;
+}
+.page-wrapper.loaded {
+    opacity: 1;
+}
+
+/* Styles for the loader */
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--loader-background);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.loader {
+    border: 0.5rem solid var(--loader-border-light);
+    border-top: 0.5rem solid var(--loader-border-dark);
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

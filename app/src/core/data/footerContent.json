@@ -1,0 +1,17 @@
+{
+    "newsletter": {
+      "title": "Newsletter",
+      "formId": "newsletterForm",
+      "inputPlaceholder": "Enter your email",
+      "buttonText": "Subscribe"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero vitae nulla malesuada fermentum."
+    },
+    "companyInfo": {
+      "name": "Company Name",
+      "year": 2024
+    }
+  }
+  

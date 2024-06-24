@@ -1,0 +1,13 @@
+{
+    "headerImage": {
+        "src": "/app/assets/icons/globant-light-bg.png",
+        "alt": "Header Image"
+    },
+    "navItems": [
+        { "text": "Home", "id": "intro" },
+        { "text": "About", "id": "about" },
+        { "text": "Contact", "id": "contact" },
+        { "text": "Store", "id": "store"},
+        { "text": "My Car", "id": "summary"}
+    ]
+}

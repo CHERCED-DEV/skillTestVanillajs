@@ -1,0 +1,56 @@
+/* Category Cards Container */
+.category-cards-container {
+    overflow: hidden;
+    position: relative;
+    margin-top: var(--spacing-lg); /* 24px top margin */
+}
+
+.category-cards {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+/* Category Card */
+.category-card {
+    flex: 0 0 auto;
+    width: 20rem; /* 320px equivalent in px */
+    margin-right: var(--spacing-md); /* 16px right margin */
+    background-color: var(--background-color);
+    box-shadow: var(--box-shadow); /* 2px 4px rgba(0, 0, 0, 0.1) */
+    border-radius: var(--border-radius); /* 4px */
+    overflow: hidden;
+}
+
+.category-title {
+    font-size: 1.8rem; /* 28px equivalent in px */
+    color: var(--text-color);
+    text-align: center;
+    margin: var(--spacing-md) 0; /* 16px top/bottom margin, 0 left/right */
+}
+
+.category-image {
+    height: 15rem; /* 240px equivalent in px */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.category-button {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-sm); /* 8px padding */
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: none;
+    font-size: 1.6rem; /* 24px equivalent in px */
+    text-align: center;
+    cursor: pointer;
+}
+
+.category-button:hover {
+    background-color: var(--accent-color);
+}
