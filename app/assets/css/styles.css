@@ -1,32 +1,50 @@
+
+@import url('layout.css');
+@import url('components/main-banner.css');
+@import url('components/categories-cards.css');
+@import url('components/product-cards.css');
+
 :root {
-    /* Colors */
-    --primary-color: #3498db;       /* Primary color */
-    --secondary-color: #2ecc71;     /* Secondary color */
-    --accent-color: #e74c3c;        /* Accent color */
-    --background-color: #f2f2f2;    /* Background color */
-    --text-color: #333;             /* Main text color */
-    --link-color: #3498db;          /* Link color */
+    --media-query-small: 30rem;     /* 480px */
+    --media-query-medium: 48rem;    /* 768px */
+    --media-query-large: 62rem;     /* 992px */
+    --media-query-xlarge: 75rem;    /* 1200px */
+    --media-query-xxlarge: 90rem;   /* 1440px */
 
-    /* Typography */
-    --font-family: 'Arial', sans-serif;  /* Main font family */
-    --heading-font-weight: bold;         /* Font weight for headings */
-    --body-font-weight: normal;          /* Font weight for normal text */
-    --base-font-size: 1.6rem;            /* Base font size (equivalent to 16px) */
+    --color-primary: #c5db00;           /* Light green */
+    --color-secondary: #6c757d;         /* Dark gray */
+    --color-accent: #333;               /* Very dark gray */
+    --color-background: #fff;           /* White */
+    --color-background-alt: #f4f4f4;    /* Light gray */
+    --color-text: #333;                 /* Very dark gray */
+    --color-header-footer: #222;        /* Almost black */
+    --color-button: #c5db00;            /* Light green */
+    --color-button-hover: #a8c400;      /* Darker green */
 
-    /* Spacing */
-    --spacing-xs: 0.4rem;   /* Extra small space (equivalent to 4px) */
-    --spacing-sm: 0.8rem;   /* Small space (equivalent to 8px) */
-    --spacing-md: 1.6rem;   /* Medium space (equivalent to 16px) */
-    --spacing-lg: 2.4rem;   /* Large space (equivalent to 24px) */
-    --spacing-xl: 3.2rem;   /* Extra large space (equivalent to 32px) */
-
-    /* Other styles */
-    --border-radius: 0.4rem;   /* Border radius (equivalent to 4px) */
-    --box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);  /* Box shadow (equivalent to 2px 4px rgba(0, 0, 0, 0.1)) */
-    --loader-background: rgba(0, 0, 0, 0.7);
-    --loader-border-light: #f3f3f3;
-    --loader-border-dark: var(--primary-color);
+    --loader-background: rgba(34, 34, 34, 0.8);         /* Semi-transparent dark gray */
+    --loader-border-light: #c5db00;                     /* Light green */
+    --loader-border-dark: #6c757d;                      /* Dark gray */
+    
+    --font-family-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-size-base: 1rem;             /* 16px */
+    --font-size-small: 0.875rem;        /* 14px */
+    --font-size-large: 1.125rem;        /* 18px */
+    --font-size-heading: 2rem;          /* 32px */
+    --font-size-subheading: 1.5rem;     /* 24px */
+    --font-size-text: 1rem;             /* 16px */
+    --font-size-text-large: 1.25rem;    /* 20px */
+  
+    --spacing-unit: 1rem;               /* 16px */
+    --spacing-unit-small: 0.5rem;       /* 8px */
+    --spacing-unit-medium: 1rem;        /* 16px */
+    --spacing-unit-large: 2rem;         /* 32px */
+    --spacing-unit-xlarge: 4rem;        /* 64px */
+  
+    --box-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --box-shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    --box-shadow-large: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
+ 
 
 * {
     box-sizing: border-box;
@@ -34,19 +52,34 @@
     margin: 0;
 }
 
+body {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.323;
+}
+
 .page-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: opacity 3.5s ease-in; 
-    max-width: 90rem;
     height: 100vh;
-    margin: 0 auto;
     opacity: 0;
 }
 .page-wrapper.loaded {
     opacity: 1;
 }
+.header__wrapper,
+.main_wrapper, 
+.footer__wrapper {
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: var(--spacing-unit-medium) var(--spacing-unit);
+}
+
 
 /* Styles for the loader */
 .loader-container {
@@ -78,8 +111,9 @@
     0% {
         transform: rotate(0deg);
     }
-
+    
     100% {
         transform: rotate(360deg);
     }
 }
+

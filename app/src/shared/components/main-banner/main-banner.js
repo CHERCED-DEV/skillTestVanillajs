@@ -25,11 +25,11 @@ class MainBannerBuilder {
         bannerContainer.style.backgroundPosition = "center";
         bannerContainer.style.backgroundRepeat = "no-repeat";
 
-        const bannerText = Helper.createDomElement("div", "banner-text");
+        const bannerText = Helper.createDomElement("div", "main-banner__text");
         bannerText.textContent = bannerConfig.text;
 
         const bannerButton = ButtonBuilder.createButton(
-            "banner-button", 
+            "main__banner--button", 
             bannerConfig.buttonLabel,
             buttonAction, 
             {

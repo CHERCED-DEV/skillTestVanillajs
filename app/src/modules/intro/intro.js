@@ -1,5 +1,5 @@
 import { CategoryCardBuilder } from '../../shared/components/cards/category-card.js';
-import { MainBannerBuilder } from '../../shared/components/main-banner/main-banner.js';
+import { ProductsCardsBuilder } from '../../shared/components/cards/product-cards.js';
 
 class IntroModuleHandler {
     static async initialize(productService) {
@@ -13,17 +13,13 @@ class IntroModuleHandler {
     }
 
     static async renderIntroModule(categories) {
-        const fragment = document.createDocumentFragment();
-
-        const mainBanner = await MainBannerBuilder.createMainBanner("introBannerContent.json", () => {
-            console.log("Banner button clicked!");
-        });
-        fragment.appendChild(mainBanner);
-
         const categoriesCards = await CategoryCardBuilder.createCategoryCards(categories);
-        fragment.appendChild(categoriesCards);
+        return categoriesCards;
+    }
 
-        return fragment;
+    static async renderProductsByCategory(productsByCategory) {
+        const productCards = await ProductsCardsBuilder.createProductsCards(productsByCategory);
+        return productCards;
     }
 }
 

@@ -66,7 +66,7 @@ class CategoryCardBuilder {
                 "category-button",
                 "Explore Category",
                 () => {
-                    window.location.href = `#/category?id=${category.id}`;
+                    window.location.href = `#intro/category?id=${category.id}`;
                 },
                 {
                     type: "button"

@@ -6,11 +6,25 @@
       "buttonText": "Subscribe"
     },
     "about": {
-      "title": "About Us",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero vitae nulla malesuada fermentum."
+      "title": "About Me",
+      "description": "This project embodies my journey in mastering web development for a technical interview. Focused on JavaScript and CSS, it reflects my dedication to clean, modular code and best practices. Through BEM methodology and responsive design, I aim to balance detail with innovation, showcasing my passion and commitment to high-quality work."
     },
+    "links": [
+      {
+        "name": "LinkedIn",
+        "url": "https://www.linkedin.com/in/your-profile"
+      },
+      {
+        "name": "Portfolio",
+        "url": "https://www.your-portfolio.com"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/your-repo"
+      }
+    ],
     "companyInfo": {
-      "name": "Company Name",
+      "name": "Cherced Dev",
       "year": 2024
     }
   }

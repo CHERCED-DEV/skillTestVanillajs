@@ -15,7 +15,7 @@ class ProductService {
     }
 
     async fetchProductsByCategory(category) {
-        return await Helper.fetchApi(`${this.apiUrl}/categories/${category}`, this.headers, `Error fetching products for category ${category}:`);
+        return await Helper.fetchApi(`${this.apiUrl}/categories/${category}/products`, this.headers, `Error fetching products for category ${category}:`);
     }
 
     async fetchAllCategories() {

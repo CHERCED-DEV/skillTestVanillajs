@@ -11,7 +11,10 @@ class HeaderBuilder {
             fragment.appendChild(HeaderBuilder.createHeaderContainerImg(headerContent.headerImage));
             fragment.appendChild(HeaderBuilder.createHeaderNavigation(headerContent.navItems));
 
-            return fragment;
+            const headerWrapper = Helper.createDomElement("div", "header__wrapper");
+            headerWrapper.appendChild(fragment);
+
+            return headerWrapper;
         } catch (error) {
             console.error("Error creating header:", error);
             return null;
@@ -34,6 +37,7 @@ class HeaderBuilder {
 
         navItems.forEach(item => {
             const listItem = Helper.createDomElement("li", "header_nav-item");
+            listItem.id = item.id;
             const link = Helper.createDomElement("a", "header_nav-link", { href: `#${item.id}` });
             link.textContent = item.text;
             listItem.appendChild(link);
