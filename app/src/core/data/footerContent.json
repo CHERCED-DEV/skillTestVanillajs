@@ -12,15 +12,18 @@
     "links": [
       {
         "name": "LinkedIn",
-        "url": "https://www.linkedin.com/in/your-profile"
+        "url": "https://www.linkedin.com/in/cherced/",
+        "target": true
       },
       {
         "name": "Portfolio",
-        "url": "https://www.your-portfolio.com"
+        "url": "https://cherced-world.vercel.app/",
+        "target": false
       },
       {
         "name": "GitHub",
-        "url": "https://github.com/your-repo"
+        "url": "https://github.com/CHERCED-DEV",
+        "target": true
       }
     ],
     "companyInfo": {

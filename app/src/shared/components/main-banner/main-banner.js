@@ -19,7 +19,10 @@ class MainBannerBuilder {
 
     static createMainBannerNode(bannerConfig, buttonAction) {
         const bannerContainer = Helper.createDomElement("div", "main-banner");
-
+        if (window.innerWidth > 1248) {
+            const bannerHeigth = MainBannerBuilder.bannerSizeRecalc();
+            bannerContainer.style.height = `${bannerHeigth}px`
+        }
         bannerContainer.style.backgroundImage = `url(${bannerConfig.imageUrl})`;
         bannerContainer.style.backgroundSize = "cover";
         bannerContainer.style.backgroundPosition = "center";
@@ -41,6 +44,12 @@ class MainBannerBuilder {
         bannerContainer.appendChild(bannerButton);
 
         return bannerContainer;
+    }
+
+    static bannerSizeRecalc() {
+        const realScreen = window.innerHeight;
+        console.log(realScreen);
+        return realScreen - 80;
     }
 }
 

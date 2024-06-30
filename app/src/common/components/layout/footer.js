@@ -81,7 +81,9 @@ class FooterBuilder {
             const a = Helper.createDomElement("a", 'footer__link');
             a.href = link.url;
             a.textContent = link.name;
-            a.target = "_blank";
+            if (link.target) {
+                a.target = "_blank";
+            }
 
             li.appendChild(a);
             ul.appendChild(li);

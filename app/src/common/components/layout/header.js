@@ -22,7 +22,8 @@ class HeaderBuilder {
     }
 
     static createHeaderContainerImg(imageConfig) {
-        const headerImgContainer = Helper.createDomElement("div", "header_container-img");
+        const headerImgContainer = Helper.createDomElement("a", "header_container-img");
+        headerImgContainer.href = imageConfig.link;
         const headerImgTag = Helper.createDomElement("img", "header_img", {
             src: imageConfig.src,
             alt: imageConfig.alt

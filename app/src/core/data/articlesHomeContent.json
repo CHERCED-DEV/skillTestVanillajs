@@ -1,0 +1,20 @@
+[
+    {
+        "imageUrl": "path/to/article-image1.jpg",
+        "title": "The Ultimate Guide to Shopping",
+        "snippet": "Learn the best tips and tricks for an amazing shopping experience.",
+        "url": "https://example.com/articles/ultimate-guide"
+    },
+    {
+        "imageUrl": "path/to/article-image2.jpg",
+        "title": "Top 10 Products of 2024",
+        "snippet": "Discover the top-rated products of the year.",
+        "url": "https://example.com/articles/top-10-products"
+    },
+    {
+        "imageUrl": "path/to/article-image3.jpg",
+        "title": "How to Get the Best Deals",
+        "snippet": "Find out how to save money and get the best deals on your favorite items.",
+        "url": "https://example.com/articles/best-deals"
+    }
+]

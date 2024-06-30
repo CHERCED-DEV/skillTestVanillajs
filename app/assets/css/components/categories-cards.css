@@ -1,56 +1,155 @@
 /* Category Cards Container */
-.category-cards-container {
-    overflow: hidden;
+.category-cards_container {
+    margin: var(--spacing-unit-medium-negative);
+    padding: var(--spacing-unit-medium);
     position: relative;
-    margin-top: var(--spacing-lg); /* 24px top margin */
+}
+
+/* Category Cards Wrapper */
+.category-cards_wrapper {
+    padding: var(--spacing-unit-large) 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 .category-cards {
+    list-style: none;
     display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
     padding: 0;
     margin: 0;
-    list-style-type: none;
+    overflow-x: auto;
+    justify-content: space-between;
+    overflow: hidden;
+    gap: var(--spacing-unit-medium);
 }
 
 /* Category Card */
 .category-card {
-    flex: 0 0 auto;
-    width: 20rem; /* 320px equivalent in px */
-    margin-right: var(--spacing-md); /* 16px right margin */
-    background-color: var(--background-color);
-    box-shadow: var(--box-shadow); /* 2px 4px rgba(0, 0, 0, 0.1) */
-    border-radius: var(--border-radius); /* 4px */
-    overflow: hidden;
-}
-
-.category-title {
-    font-size: 1.8rem; /* 28px equivalent in px */
-    color: var(--text-color);
-    text-align: center;
-    margin: var(--spacing-md) 0; /* 16px top/bottom margin, 0 left/right */
-}
-
-.category-image {
-    height: 15rem; /* 240px equivalent in px */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.category-button {
     display: block;
-    width: 100%;
-    padding: var(--spacing-sm); /* 8px padding */
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    border: none;
-    font-size: 1.6rem; /* 24px equivalent in px */
+    border-radius: var(--spacing-unit-small);
+    box-shadow: var(--box-shadow-small);
+    min-width: 20rem;
+    max-width: 25rem;
+    width: calc((100% / 3) - var(--spacing-unit-medium));
+    height: 50vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
     text-align: center;
-    cursor: pointer;
+    position: relative; /* Necesario para posicionar el pseudo-elemento ::before */
 }
 
-.category-button:hover {
-    background-color: var(--accent-color);
+.category-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Asegúrate de que el filtro esté detrás del texto */
+    transition: background-color 0.3s ease; /* Añadir transición para el cambio de color */
+}
+
+.category-card_title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--font-size-large);
+    color: var(--color-primary); /* Color verde inicial */
+    margin: var(--spacing-unit-small) 0;
+    z-index: 2; /* Asegúrate de que el texto esté por encima del filtro */
+    transition: color 0.3s ease; /* Añadir transición para el cambio de color */
+}
+
+.category-card.hidden {
+    display: none;
+}
+
+.category-card:hover::before {
+    background: linear-gradient(180deg, rgba(197, 219, 0, 0) 0%, rgba(197, 219, 0, 0.5) 50%, rgba(197, 219, 0, 0) 100%);
+}
+
+
+.category-card:hover .category-card_title {
+    color: #000; /* Cambiar el color del título a negro */
+}
+
+.category-card:hover .category-card_button-container {
+    opacity: 1;
+    transition: opacity ease-in 0.5s;
+}
+
+.category-card_button-container {
+    padding: 1rem;
+    display: flex;
+    width: 100%;
+    opacity: 0;
+    z-index: 2; /* Asegúrate de que el botón esté por encima del filtro */
+}
+
+.category-card_button--btn {
+    background-color: var(--color-button);
+    border: 0 solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    z-index: 2; /* Asegúrate de que el botón esté por encima del filtro */
+}
+
+.category-card_button--btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+.category-card_button--btn:active {
+    background-color: var(--color-button);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Buttons */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-button);
+    color: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    padding: var(--spacing-unit-small);
+    font-size: var(--font-size-large);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    transform: scale(1.1);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.nav-button:active {
+    background-color: var(--color-button);
+    transform: scale(0.95);
+    box-shadow: var(--box-shadow-small);
+}
+
+.left-button {
+    left: var(--spacing-unit-medium);
+}
+
+.right-button {
+    right: var(--spacing-unit-medium);
 }

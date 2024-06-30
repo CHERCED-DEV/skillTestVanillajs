@@ -1,7 +1,8 @@
 {
     "headerImage": {
         "src": "/app/assets/icons/globant-light-bg.png",
-        "alt": "Header Image"
+        "alt": "Header Image",
+        "link": "https://www.globant.com/"
     },
     "navItems": [
         { "text": "Home", "id": "intro" },

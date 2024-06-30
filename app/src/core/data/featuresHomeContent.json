@@ -1,0 +1,17 @@
+[
+    {
+        "iconUrl": "path/to/feature-icon1.png",
+        "title": "Free Shipping",
+        "description": "We offer free shipping on all orders over $50."
+    },
+    {
+        "iconUrl": "path/to/feature-icon2.png",
+        "title": "24/7 Customer Support",
+        "description": "Our customer support team is available around the clock to assist you."
+    },
+    {
+        "iconUrl": "path/to/feature-icon3.png",
+        "title": "Quality Guarantee",
+        "description": "We provide a quality guarantee on all our products."
+    }
+]

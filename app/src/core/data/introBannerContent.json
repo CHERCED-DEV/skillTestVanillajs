@@ -1,5 +1,6 @@
 {
     "imageUrl": "/app/assets/imgs/banners/infoBanner.jpg",
+    "fullScreen": true,
     "text": "Welcome to Our Store!",
     "buttonLabel": "Shop Now"
 }

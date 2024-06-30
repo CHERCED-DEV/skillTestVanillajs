@@ -1,9 +1,6 @@
-import { HeaderBuilder } from "../../common/components/layout/header.js";
-import { FooterBuilder } from "../../common/components/layout/footer.js";
-import { Helper } from "../helpers/helper.js";
 import { IntroModuleHandler } from "../../modules/intro/intro.js";
-import { ProductService } from "./product.service.js";
-import { MainBannerBuilder } from "../../shared/components/main-banner/main-banner.js";
+import { StoreModule } from "../../modules/store/store.js";
+import { Helper } from "../helpers/helper.js";
 
 /**
  * Class to orchestrate DOM component creation and management.
@@ -15,41 +12,28 @@ class DOMOrchestrator {
             console.error(`Container with ID '${this.containerId}' not found.`);
             return;
         }
-        window.addEventListener('hashchange', () => this.handleNavigation());
-        await this.buildLayout(); // build basic layout
         this.handleNavigation(); // Handle initial load
     }
 
-    static productService = new ProductService('https://api.escuelajs.co/api/v1', {
-        'Content-Type': 'application/json',
-    });
+
 
     static async handleNavigation() {
-        const hash = DOMOrchestrator.findQueryParam(window.location.hash, '#');
-        this.contentElement.innerHTML = '';
         let component;
-        const categoryId = DOMOrchestrator.findQueryParam(window.location.hash, 'category?id');
-        DOMOrchestrator.controlNavigation(hash);
+        const hash = this.findQueryParam(window.location.hash, '#');
+        const mainWrapper = Helper.createDomElement("div", "main_wrapper");
+        const categoryId = this.findQueryParam(window.location.hash, 'category?id');
+        this.controlNavigation(hash);
+        this.contentElement.innerHTML = '';
         switch (hash) {
             case 'store':
-                component = Store.render();
+                if (categoryId) {
+                    component = await StoreModule.renderProductsByCategory(categoryId, mainWrapper);
+                } else {
+                    component = await StoreModule.initialize(mainWrapper);
+                }
                 break;
             case 'intro':
-                if (categoryId) {
-                    const categoryInventory = await DOMOrchestrator.productService.fetchProductsByCategory(categoryId)
-                    component = await IntroModuleHandler.renderProductsByCategory(categoryInventory);
-                } else {
-                    const fragment = document.createDocumentFragment();
-                    const mainBanner = await MainBannerBuilder.createMainBanner("introBannerContent.json", () => {
-                        console.log("Banner button clicked!");
-                    });
-                    const mainWrapper = Helper.createDomElement("div", "main_wrapper");
-                    const introModule = await IntroModuleHandler.initialize(DOMOrchestrator.productService);
-                    mainWrapper.appendChild(introModule);
-                    fragment.appendChild(mainBanner);
-                    fragment.appendChild(mainWrapper);
-                    component = fragment;
-                }
+                component = await IntroModuleHandler.initialize(mainWrapper);
                 break;
             case 'about':
                 component = About.render();
@@ -61,21 +45,7 @@ class DOMOrchestrator {
                 component = MyCar.render();
                 break;
             default:
-                if (categoryId) {
-                    const categoryInventory = await DOMOrchestrator.productService.fetchProductsByCategory(categoryId)
-                    component = await IntroModuleHandler.renderProductsByCategory(categoryInventory);
-                } else {
-                    const fragment = document.createDocumentFragment();
-                    const mainBanner = await MainBannerBuilder.createMainBanner("introBannerContent.json", () => {
-                        console.log("Banner button clicked!");
-                    });
-                    const mainWrapper = Helper.createDomElement("div", "main_wrapper");
-                    const introModule = await IntroModuleHandler.initialize(DOMOrchestrator.productService);
-                    mainWrapper.appendChild(introModule);
-                    fragment.appendChild(mainBanner);
-                    fragment.appendChild(mainWrapper);
-                    component = fragment;
-                }
+                component = await IntroModuleHandler.initialize(mainWrapper);
                 break;
         }
 
@@ -100,7 +70,6 @@ class DOMOrchestrator {
     }
 
     static async replaceMainContent(newComponent) {
-        this.contentElement.innerHTML = '';
         Helper.createModule(this.contentElement, newComponent);
     }
 
@@ -121,24 +90,7 @@ class DOMOrchestrator {
             return null;
         }
     }
-
-    static async buildLayout() {
-        const loader = document.getElementById('loader');
-        const pageWrapper = document.getElementById('pageWrapper');
-
-        try {
-            await Helper.createComponent('header', HeaderBuilder.createHeader);
-            await Helper.createComponent('footer', FooterBuilder.createFooter);
-            pageWrapper.classList.add('loaded');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.display = 'none';
-            }, 3500);
-        } catch (error) {
-            console.error('Error building layout:', error);
-        }
-    }
-
 }
 
 export { DOMOrchestrator };
+
