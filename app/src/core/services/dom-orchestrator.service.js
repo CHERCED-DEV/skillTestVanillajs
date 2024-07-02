@@ -1,6 +1,7 @@
 import { IntroModuleHandler } from "../../modules/intro/intro.js";
 import { StoreModule } from "../../modules/store/store.js";
 import { Helper } from "../helpers/helper.js";
+import { LoaderManagerService } from "../helpers/loader-manage.service.js";
 
 /**
  * Class to orchestrate DOM component creation and management.
@@ -24,30 +25,32 @@ class DOMOrchestrator {
         const categoryId = this.findQueryParam(window.location.hash, 'category?id');
         this.controlNavigation(hash);
         this.contentElement.innerHTML = '';
+
         switch (hash) {
             case 'store':
                 if (categoryId) {
-                    component = await StoreModule.renderProductsByCategory(categoryId, mainWrapper);
+                    component = await this.handleModuleLoad(StoreModule.renderProductsByCategory(categoryId, mainWrapper));
                 } else {
-                    component = await StoreModule.initialize(mainWrapper);
+                    component = await this.handleModuleLoad(StoreModule.initialize(mainWrapper));
                 }
                 break;
             case 'intro':
-                component = await IntroModuleHandler.initialize(mainWrapper);
+                component = await this.handleModuleLoad(IntroModuleHandler.initialize(mainWrapper));
                 break;
             case 'about':
-                component = About.render();
+                component = await this.handleModuleLoad(About.render());
                 break;
             case 'contact':
-                component = Contact.render();
+                component = await this.handleModuleLoad(Contact.render());
                 break;
             case 'summary':
-                component = MyCar.render();
+                component = await this.handleModuleLoad(MyCar.render());
                 break;
             default:
-                component = await IntroModuleHandler.initialize(mainWrapper);
+                component = await this.handleModuleLoad(IntroModuleHandler.initialize(mainWrapper));
                 break;
         }
+
 
 
         if (component) {
@@ -88,6 +91,15 @@ class DOMOrchestrator {
                 }
             }
             return null;
+        }
+    }
+
+   static async handleModuleLoad(modulePromise) {
+        try {
+            return await LoaderManagerService.handleLoader(modulePromise);
+        } catch (error) {
+            console.error("There was a problem with the module you requested:", error);
+            throw error;
         }
     }
 }
