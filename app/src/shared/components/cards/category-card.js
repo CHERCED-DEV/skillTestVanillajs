@@ -30,17 +30,17 @@ class CategoryCardBuilder {
             containerWrapper.appendChild(ul);
 
             const navContainer = Helper.createDomElement("div", "category-cards_nav--buttons");
+
             const leftButton = ButtonBuilder.createButton(
                 ["nav-button", "left-button"],
                 "<",  // Left arrow
-                () => ul.scrollBy({ left: -100, behavior: 'smooth' }),
+                () => this.handleCardsNavigation("left"),
                 { type: "button" }
             );
-
             const rightButton = ButtonBuilder.createButton(
                 ["nav-button", "right-button"],
                 ">",  // Right arrow
-                () => ul.scrollBy({ left: 100, behavior: 'smooth' }),
+                () => this.handleCardsNavigation("right"),
                 { type: "button" }
             );
 
@@ -90,6 +90,21 @@ class CategoryCardBuilder {
         } catch (error) {
             console.error("Error creating category card:", error);
             throw error;
+        }
+    }
+
+    static handleCardsNavigation(direction) {
+        const cards = document.querySelectorAll(".category-card");
+        const visibleCards = Array.from(cards).filter(card => !card.classList.contains("hidden"));
+        const firstVisibleIndex = Array.from(cards).indexOf(visibleCards[0]);
+        const lastVisibleIndex = Array.from(cards).indexOf(visibleCards[visibleCards.length - 1]);
+
+        if (direction === "left" && firstVisibleIndex > 0) {
+            cards[firstVisibleIndex - 1].classList.remove("hidden");
+            cards[lastVisibleIndex].classList.add("hidden");
+        } else if (direction === "right" && lastVisibleIndex < cards.length - 1) {
+            cards[firstVisibleIndex].classList.add("hidden");
+            cards[lastVisibleIndex + 1].classList.remove("hidden");
         }
     }
 

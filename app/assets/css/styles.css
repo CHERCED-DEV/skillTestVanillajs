@@ -73,9 +73,11 @@ body {
     height: 100vh;
     opacity: 0;
 }
+
 .page-wrapper.loaded {
     opacity: 1;
 }
+
 .header__wrapper,
 .main_wrapper, 
 .footer__wrapper {
@@ -120,6 +122,20 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* main loading animation */
+.main-content.loading {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    background-image: url('../icons/load.gif');
+    background-color: var(--color-header-footer);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
 }
 
 /* lines animation */

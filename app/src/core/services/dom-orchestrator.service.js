@@ -25,7 +25,7 @@ class DOMOrchestrator {
         const categoryId = this.findQueryParam(window.location.hash, 'category?id');
         this.controlNavigation(hash);
         this.contentElement.innerHTML = '';
-
+        this.contentElement.classList.add("loading")
         switch (hash) {
             case 'store':
                 if (categoryId) {
@@ -74,6 +74,7 @@ class DOMOrchestrator {
 
     static async replaceMainContent(newComponent) {
         Helper.createModule(this.contentElement, newComponent);
+        this.contentElement.classList.remove("loading");
     }
 
     static findQueryParam(hash, param) {
